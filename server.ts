@@ -1,8 +1,10 @@
-// const fastify = require('fastify')
-// const crypto = require('crypto')
-
 import fastify from "fastify"
-import crypto from "node:crypto"
+import { fastifySwagger } from '@fastify/swagger'
+import { validatorCompiler, serializerCompiler, type ZodTypeProvider, jsonSchemaTransform } from "fastify-type-provider-zod"
+import { createCourseRoute } from "./src/routes/create-course.ts"
+import { getCourseByIdRoute } from "./src/routes/get-course-by-id.ts"
+import { getCoursesRoute } from "./src/routes/get-courses.ts"
+import scalarAPIReference from "@scalar/fastify-api-reference"
 
 const server = fastify({
   logger: {
@@ -14,52 +16,33 @@ const server = fastify({
       }
     }
   }
-})
+}).withTypeProvider<ZodTypeProvider>()
 
-const courses = [
-  { id: "1", name: "JavaScript Basics" },
-  { id: "2", name: "Advanced Node.js" },
-  { id: "3", name: "React for Beginners" },
-  { id: "4", name: "Full Stack Development" }
-]
+if (process.env.NODE_ENV === "development") {
+  server.register(fastifySwagger, {
+    openapi: {
+      info: {
+        title: "Desafio Node.js",
+        version: "1.0.0",
+      }
+    },
+    transform: jsonSchemaTransform
+  })
 
-server.get("/courses", () => {
-  return { courses }
-})
+  server.register(scalarAPIReference, {
+    routePrefix: '/docs',
+    configuration: {
+      theme: "saturn"
+    }
+  })
+}
 
-server.get("/courses/:id", (request, reply) => {
-  type Params = {
-    id: string
-  }
+server.setSerializerCompiler(serializerCompiler)
+server.setValidatorCompiler(validatorCompiler)
 
-  const params = request.params as Params
-  const course = courses.find(course => course.id === params.id)
-
-  if (course) {
-    return { course }
-  }
-
-  return reply.status(404).send()
-})
-
-server.post("/courses", (request, reply) => {
-  type Body = {
-    title: string
-  }
-
-  const body = request.body as Body
-
-  const courseId = crypto.randomUUID()
-  const courseTitle = body.title
-
-  if (!courseTitle) {
-    return reply.status(400).send({ message: "Título obrigatório" })
-  }
-
-  courses.push({ id: courseId, name: courseTitle })
-
-  return reply.status(201).send({ message: "Course created successfully", courseId })
-})
+server.register(createCourseRoute)
+server.register(getCourseByIdRoute)
+server.register(getCoursesRoute)
 
 server.listen({ port: 3333 }).then(() => {
   console.log("HTTP server is running on port 3333")
