@@ -11,23 +11,24 @@ export const createCourseRoute: FastifyPluginAsyncZod = async (server) => {
       summary: 'Create a new course',
       description: 'This endpoint allows you to create a new course with a title.',
       body: z.object({
-        title: z.string().min(5, { message: "Title must be at least 5 characters long" })
+        title: z.string().min(5, { message: "Title must be at least 5 characters long" }),
+        description: z.string().min(5, { message: "Description must be at least 5 characters long" })
       }),
       response: {
         201: z.object({ courseId: z.uuid() }).describe('Course created successfully'),
       }
     }
   }, async (request, reply) => {
-    type Body = {
-      title: string
-    }
 
-    const courseTitle = request.body.title
+    const body = request.body
+
+    const courseTitle = body.title
+    const courseDescription = body.description
 
     const reuslt = await db
       .insert(courses)
       .values({
-        description: "Some description",
+        description: courseDescription,
         title: courseTitle,
       })
       .returning()

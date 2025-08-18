@@ -15,6 +15,41 @@
       "when": 1755121929664,
       "tag": "0001_large_zarek",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1755292701289,
+      "tag": "0002_goofy_nehzno",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1755292816284,
+      "tag": "0003_dashing_vulture",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1755294658753,
+      "tag": "0004_greedy_mole_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1755295245896,
+      "tag": "0005_tired_killer_shrike",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1755296619055,
+      "tag": "0006_premium_radioactive_man",
+      "breakpoints": true
     }
   ]
 }

@@ -2,7 +2,8 @@ POST http://localhost:3333/courses
 Content-Type: application/json
 
 {
-  "title": "Cu"
+  "title": "Curso de CS2",
+  "description": "Descrição do curso de CS2"
 }
 
 ###
