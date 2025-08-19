@@ -3,12 +3,17 @@ import { db } from '../db/client.ts'
 import { courses } from '../db/schema.ts'
 import z from 'zod'
 import { desc, eq } from 'drizzle-orm'
+import { checkRequestJWT } from '../hooks/check-request-jwt.ts'
+import { getAuthenticatedUserFromRequest } from '../utils/get-authenticated-user-from-request.ts'
 
 export const getCourseByIdRoute: FastifyPluginAsyncZod = async (server) => {
   server.get("/courses/:id", {
+    preHandler: [
+      checkRequestJWT
+    ],
     schema: {
       params: z.object({
-        id: z.uuid({ message: "ID deve ser um UUID válido" })
+        id: z.uuid({ message: "Must be a valid uuid" })
       }),
       tags: ['courses'],
       summary: 'Get course by ID',
@@ -24,6 +29,8 @@ export const getCourseByIdRoute: FastifyPluginAsyncZod = async (server) => {
       }
     }
   }, async (request, reply) => {
+    const user = getAuthenticatedUserFromRequest(request)
+
     type Params = {
       id: string
     }

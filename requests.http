@@ -1,9 +1,10 @@
 POST http://localhost:3333/courses
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyZWY2Zjc2Yy1mMmVmLTQyNjQtODRjOS0zMWU1ODllOGViOGYiLCJyb2xlIjoibWFuYWdlciIsImlhdCI6MTc1NTYyMzMwOX0.5a2c-b6n3RibeK2WHRIi09BJMGETUffmMvJ7ICXlyIg
 
 {
-  "title": "Curso de CS2",
-  "description": "Descrição do curso de CS2"
+  "title": "Curso de Node.js",
+  "description": "Descrição do curso de Node.js"
 }
 
 ###
@@ -12,4 +13,15 @@ GET http://localhost:3333/courses
 
 ###
 
-GET http://localhost:3333/courses/5a28a59d-fc38-4a87-a952-22d6282cddba
+GET http://localhost:3333/courses/fa04d35d-58f5-4e34-a78b-e5a2eb264057
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyZWY2Zjc2Yy1mMmVmLTQyNjQtODRjOS0zMWU1ODllOGViOGYiLCJyb2xlIjoibWFuYWdlciIsImlhdCI6MTc1NTYyMzMwOX0.5a2c-b6n3RibeK2WHRIi09BJMGETUffmMvJ7ICXlyIg
+
+###
+
+POST http://localhost:3333/sessions
+Content-Type: application/json
+
+{
+  "email": "Isaac34@hotmail.com",
+  "password": "123456"
+}

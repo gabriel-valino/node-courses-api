@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for node-primeira-api/src/db/schema.ts</title>
+    <title>Code coverage report for node-primeira-api/src/hooks/check-request-jwt.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">node-primeira-api/src/db</a> schema.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">node-primeira-api/src/hooks</a> check-request-jwt.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.9% </span>
+                <span class="strong">62.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/22</span>
+                <span class='fraction'>10/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.9% </span>
+                <span class="strong">62.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/22</span>
+                <span class='fraction'>10/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -88,57 +88,63 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { pgTable, text, uuid, uniqueIndex, timestamp, pgEnum } from "drizzle-orm/pg-core"
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span></td><td class="text"><pre class="prettyprint lang-js">import type { FastifyRequest, FastifyReply } from "fastify";
+import jwt from "jsonwebtoken";
 &nbsp;
-export const userRole = pgEnum("user_role", ["manager", "student"])
+type JWTPayload = {
+  sub: string; // User ID
+  role: string; // User role
+  iat: number; // Issued at time
+}
 &nbsp;
-export const users = pgTable("users", {
-  id: uuid().defaultRandom().primaryKey(),
-  name: text().notNull(),
-  email: text().notNull().unique(),
-  password: text().notNull(),
-  role: userRole().notNull().default("student"),
-})
+export async function checkRequestJWT(request: FastifyRequest, reply: FastifyReply) {
+  const token = request.headers.authorization
 &nbsp;
-export const courses = pgTable("courses", {
-  id: uuid().defaultRandom().primaryKey(),
-  title: text().notNull().unique(),
-  description: text().notNull(),
-})
+  if (!token) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return reply.status(401).send({ error: 'Unauthorized' });</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-export const enrollments = pgTable("enrollments", {
-  id: uuid("id").defaultRandom().primaryKey(),
-  userId: uuid().notNull().references(() =&gt; users.id),
-  courseId: uuid().notNull().references(() =&gt; courses.id),
-  createdAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
-}, table =&gt; {
-<span class="cstat-no" title="statement not covered" >  return [uniqueIndex().on(table.userId, table.courseId)]</span>
-<span class="cstat-no" title="statement not covered" >})</span></pre></td></tr></table></pre>
+  if (!process.env.JWT_SECRET) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    throw new Error('JWT_SECRET is not defined in the environment variables')</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+&nbsp;
+  try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET) as JWTPayload;
+&nbsp;
+    request.user = payload
+<span class="branch-0 cbranch-no" title="branch not covered" >  } catch (error) {</span>
+<span class="cstat-no" title="statement not covered" >    return reply.status(401).send({ error });</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
